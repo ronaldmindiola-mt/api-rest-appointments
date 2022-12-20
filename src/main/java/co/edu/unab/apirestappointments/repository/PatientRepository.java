@@ -6,16 +6,14 @@ import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
-import org.springframework.stereotype.Repository;
 
 import co.edu.unab.apirestappointments.models.Patient;
 
-@Repository
 public interface PatientRepository extends MongoRepository<Patient, String> {
 
     List<Patient> findByLastName(String lastName);
 
-    Boolean existsPacienteByDniBoolean(long Id);
+    Boolean existsPacienteByDni(long Id);
 
     Optional<Patient> findByDni(long dni);
 

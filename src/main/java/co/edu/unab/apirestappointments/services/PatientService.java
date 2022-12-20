@@ -79,14 +79,11 @@ public class PatientService {
     }
 
     public boolean existsPatientByID(long dni) {
-        return patientRepository.existsByDni(dni);
+        return patientRepository.existsPacienteByDni(dni);
     }
 
     public Optional<Patient> patientByDni(long dni){
         return patientRepository.findByDni(dni);
     }
-
-
-
 
 }
