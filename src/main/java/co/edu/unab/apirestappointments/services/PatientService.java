@@ -15,10 +15,10 @@ import co.edu.unab.apirestappointments.repository.PatientRepository;
 public class PatientService {
     
     @Autowired
-    private PatientRepository patientRepository;
+    PatientRepository patientRepository;
 
     // Lista de Pacientes ordenados por apellido.
-    public List<Patient> getListPatientsOrder(){
+    public List<Patient> getListPatientsOrderByLastName(){
         List<Patient> listPatients = patientRepository.findAll();
         listPatients.sort(Comparator.comparing(Patient::getLastName));
         return listPatients;
@@ -29,7 +29,6 @@ public class PatientService {
         return patientRepository.findById(id);
     }
 
-    
     // Busca un paciente por su apellido
     public List<Patient> getPatientByLastName(String lastName){
         return patientRepository.findByLastName(lastName);
@@ -38,12 +37,9 @@ public class PatientService {
     // Guarda un paciente
     public String savePatient(Patient patient){
         
-        patient.setDni(patient.getDni());
         patient.setName(patient.getName().toLowerCase());
         patient.setLastName(patient.getLastName().toLowerCase());
         patient.setDayOfBirth(patient.getDayOfBirth());
-        patient.setHeight(patient.getHeight());
-        patient.setWeight(patient.getWeight());
         patient.setAlergies(patient.getAlergies());
         patient.setAddress(patient.getAddress());
 
@@ -81,4 +77,16 @@ public class PatientService {
     public List<Patient> getListPatientsByDateMinor(LocalDate date){
         return patientRepository.findByMinorDate(date);
     }
+
+    public boolean existsPatientByID(long dni) {
+        return patientRepository.existsByDni(dni);
+    }
+
+    public Optional<Patient> patientByDni(long dni){
+        return patientRepository.findByDni(dni);
+    }
+
+
+
+
 }

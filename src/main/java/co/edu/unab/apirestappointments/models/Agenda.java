@@ -12,8 +12,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Document("agendas")
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 public class Agenda {
@@ -24,6 +24,5 @@ public class Agenda {
     private String namePhysician;
     private String specialty;
     private LocalDate date;
-    private List<Object> appointments;
-
+    private List<Appointment> appointments;
 }

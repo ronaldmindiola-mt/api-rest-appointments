@@ -7,5 +7,5 @@ import co.edu.unab.apirestappointments.models.Agenda;
 
 @Repository
 public interface AgendaRepository extends MongoRepository<Agenda, String> {
-    
+
 }

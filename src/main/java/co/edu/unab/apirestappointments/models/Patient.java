@@ -20,14 +20,11 @@ public class Patient {
 
     @Id
     public String id;
-    public Integer dni;
     public String name;
     public String lastName;
+    public long dni;
     public LocalDate dayOfBirth;
-    public Integer height; // Centimetros
-    public Integer weight; // Kilogramos
-    // Grupo Sanguineo
-    public List<String> alergies; // Lista de Alergias ["Ibuprofeno","Acetaminofen"]
-    public Object address; // {city: "Riohacha", state: "La Guajira"}
-
+    public List<String> alergies;
+    public Object address;
+    
 }

@@ -17,9 +17,9 @@ public class Physician {
     
     @Id
     private String id;
-    public Integer dni;
-    public String name;
-    public String lastName;
-    public String specialty;
+    private long dni;
+    private String name;
+    private String lastName;
+    private String specialty;
 
 }

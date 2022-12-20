@@ -29,28 +29,35 @@ public class PatientController {
 
     // Lista de pacientes
     @GetMapping()
-    public List<Patient> getListPatients() {
-        return patientService.getListPatientsOrder();
+    public List<Patient> getListPatientsOrderByLastName() {
+        return patientService.getListPatientsOrderByLastName();
     }
 
+    // Busca un Paciente por Id
     @GetMapping("/{id}")
     public Optional<Patient> findPatientById(@PathVariable("id") String id){ 
         return patientService.getPatientById(id);
     }
 
-    @GetMapping("/query")
-    public List<Patient> getPatientByLastName(@RequestParam("lastName") String lastName){
+    // Consulta un Paciente por Parametro (lastName)
+    @GetMapping("/query") //   /query?lastName=mindiola
+    public List<Patient> findPatientByLastName(@RequestParam("lastName") String lastName){
         return patientService.getPatientByLastName(lastName);
     }
 
+    @GetMapping("/existe/query")
+    public Boolean existsPatientById(@RequestParam("dni") long dni){
+        return patientService.existsPatientByID(dni);
+    }
+
     @GetMapping("/fecha/query")
-    public List<Patient> getPatientByDateMinorList(@RequestParam("date") String date){
+    public List<Patient> findPatientByDateMinorList(@RequestParam("date") String date){
         LocalDate localDate = LocalDate.parse(date);
         return patientService.getListPatientsByDateMinor(localDate);
     }
 
     @GetMapping("/ciudad/{ciudad}")
-    public List<Patient> listPatientsCity(@PathVariable("city") String city){
+    public List<Patient> getListPatientsByCity(@PathVariable("city") String city){
         return patientService.getListPatientsByCity(city);
     }
 
@@ -65,6 +72,11 @@ public class PatientController {
     public Optional<Patient> findPatientById(@PathVariable("id") int id){ 
         return patientService.getPatientById(id);
     } */
+
+    @GetMapping("/cc/{dni}")
+    public Optional<Patient> findPatientByDni(@PathVariable("dni") long dni){
+        return patientService.patientByDni(dni);
+    }
     
     @PostMapping()
     public String savePatient(@RequestBody Patient patient) {

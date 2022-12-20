@@ -17,7 +17,7 @@ public class PhysicianService {
 
     public List<Physician> getAllPhysicians(){
         List<Physician> physicians = physicianRepository.findAll();
-        physicians.sort(Comparator.comparing(Physician::getSpecialty));
+        physicians.sort((Comparator.comparing(Physician::getSpecialty)));
         return physicians;
     }
 
