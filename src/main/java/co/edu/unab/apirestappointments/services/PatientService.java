@@ -48,7 +48,7 @@ public class PatientService {
         if(state){
             return "El Paciente se guardó correctamente.";
         }else {
-            return "Error al guardar Paciente";
+            return "El Paciente se actualizó correctamente";
         }
 
     }
@@ -56,15 +56,17 @@ public class PatientService {
     // Elimina un Paciente por su Id.
     public String deletePatient(String id){
 
+        boolean existsId = patientRepository.existsById(id);
+
         String fullName = "";
 
-        if(patientRepository.existsById(id)){
+        if(existsId){
             Optional<Patient> patient = patientRepository.findById(id);
             patientRepository.deleteById(id);
             fullName = patient.get().getName() + " " + patient.get().getLastName();
             return "El paciente " + fullName + " ha sido eliminado con exito!";
         }else {
-            return "El paciente " + fullName + " NO ha sido Eliminado!";
+            return "El paciente no existe!";
         }
     }
 
